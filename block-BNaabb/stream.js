@@ -8,18 +8,18 @@
 
 var http = require("http");
 
-let server = http.createServer(handleRequest);
+var server = http.createServer(handleRequest);
 
 function handleRequest(req, res) {
   var store = "";
-  res.on("data", (chunk) => {
+  req.on("data", (chunk) => {
     store = store + chunk;
   });
   req.on("end", () => {
-    console.log(store);
+    res.write(store);
+    res.end();
   });
 }
-
 server.listen(3456, () => {
   console.log("server listin at port 9000");
 });
