@@ -11,8 +11,8 @@ var path = require("path");
 var fs = require("fs");
 
 function handleRequest(req, res) {
-  console.log(path.join(__dirname, "./readme.txt"));
-  fs.createReadStream(path.join(__dirname, "./readme.txt")).pipe(res);
+  res.setHeader("Content-Type", "text/plain");
+  fs.createReadStream("./readme.txt").pipe(res);
 }
 server.listen(5000, () => {
   console.log("server listi at port 5000");
