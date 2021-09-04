@@ -11,17 +11,7 @@ var http = require("http");
 var server = http.createServer(handleRequest);
 
 function handleRequest(req, res) {
-  var dataFormat = req.headers["content-type"];
-  var store = "";
-  req.on("data", (chunk) => {
-    store = store + chunk;
-  });
-  req.on("end", () => {
-    if (dataFormat === "application/json") {
-      var parsedData = JSON.parse(store);
-      res.end(parsedData);
-    }
-  });
+  console.log(req.headers);
 }
 server.listen(7000, () => {
   console.log("Server listin at port 7000");
