@@ -44,7 +44,21 @@ Q. Create server which can handle both json/form data without specifying which f
 - data sent from postman should have fields:
   - city
   - state
-  - country
+  - countryQ. Follow above steps with form data from postman instead of json data.
+// - once data has been captured, send only captain's name in response.
+
+// Q. Create server which can handle both json/form data without specifying which format of data is being received.
+// - add listener on port 9000
+// - use `data/end` event to capture json/form data
+// - use `req.headers['Content-Type']` to check data format
+// - parse respective data format i.e. json/form 
+// - send entire data in response
+// - data sent from postman should have fields:
+//   - city
+//   - state
+//   - country
+//   - pin
+
   - pin
 
 Q. create server, send json data in request from postman, parse in on the server and send html response with entire parsed data information.
