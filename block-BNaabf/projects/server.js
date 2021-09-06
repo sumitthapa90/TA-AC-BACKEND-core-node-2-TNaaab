@@ -1,7 +1,7 @@
 var http = require("http");
 var fs = require("fs");
 var path = require("path");
-const { strict } = require("assert");
+var qs = require("querystring");
 
 var server = http.createServer(handleRequest);
 
@@ -11,14 +11,16 @@ function handleRequest(req, res) {
     store = store + chunk;
   });
   req.on("end", () => {
-    if (req.method === "GET" && req.url === "./form") {
+    if (req.method === "GET" && req.url === "/form") {
       res.setHeader("Content-Type", "text/html");
       fs.createReadStream("./form.html").pipe(res);
     }
-    if (req.method === "POST" && req.url === "./form") {
+    if (req.method === "POST" && req.url === "/form") {
       var parsedData = qs.parse(store);
       res.setHeader("Content-Type", "text/html");
-      res.end(`<h2>${parsedData.name}</h2> <h3>${parsedData.email}</h3><h4>${parsedData.age}</h4>`)
+      res.end(
+        `<h2>${parsedData.name}</h2> <h3>${parsedData.email}</h3><h4>${parsedData.age}</h4>`
+      );
     }
   });
 }
